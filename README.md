@@ -2,9 +2,7 @@
 
 E-Commerce application similar to Shopify using React, Redux, React Hooks, React Suspense, React Router, GraphQL, Context API, Firebase, Redux-Saga, Stripe + more. This is a full stack app (MERN stack), using Firebase.
 
-This project is part of the Complete React Developer in 2022 (w/ Redux, Hooks, GraphQL) course on Udemy.
-
-https://www.udemy.com/course/complete-react-developer-zero-to-mastery
+This project is part of the Complete React Developer in 2022 (w/ Redux, Hooks, GraphQL) [course on Udemy](https://www.udemy.com/course/complete-react-developer-zero-to-mastery).
 
 **Taught By:**
 - [Zero To Mastery](https://zerotomastery.io/)
