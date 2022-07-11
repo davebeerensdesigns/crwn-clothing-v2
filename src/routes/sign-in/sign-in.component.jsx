@@ -14,6 +14,7 @@ const SignIn = () => {
                 Sign in with Google Popup
             </button>
             <SignUpFormComponent />
+
         </div>
     );
 };

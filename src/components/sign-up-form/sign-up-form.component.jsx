@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {signInWithGoogleRedirect} from "../../utils/firebase/firebase.utils";
+import {createUserWithEmailAndPassword} from "firebase/auth";
 
 const defaultFormField = {
     displayName: '',
@@ -13,6 +15,10 @@ const SignUpFormComponent = () => {
 
     console.log(formFields)
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    }
+
     const handleChange = (event) => {
         const {name, value} = event.target;
         setFormFields({...formFields, [name]: value})
@@ -21,8 +27,7 @@ const SignUpFormComponent = () => {
     return (
         <div>
             <h1>Sign up with your email and password</h1>
-            <form onSubmit={() => {
-            }}>
+            <form onSubmit={handleSubmit}>
                 <label>Display Name</label>
                 <input type='text'
                        required
