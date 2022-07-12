@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import {initializeApp} from 'firebase/app';
 import {
     getAuth,
     signInWithRedirect,
@@ -9,7 +9,7 @@ import {
     signOut,
     onAuthStateChanged,
 } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc, collection, writeBatch } from 'firebase/firestore';
+import {getFirestore, doc, getDoc, setDoc, collection, writeBatch} from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDSeD5kA6A8jwmN03U58CDTZLHqnZfHnI8",
@@ -38,7 +38,15 @@ export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
     const collectionRef = collection(db, collectionKey);
-    
+    const batch = writeBatch(db);
+
+    objectsToAdd.forEach((object) => {
+        const docRef = doc(collectionRef, object.title.toLowerCase())
+        batch.set(docRef, object)
+    })
+
+    await batch.commit()
+    console.log('done')
 }
 
 export const createUserDocumentFromAuth = async (
@@ -52,7 +60,7 @@ export const createUserDocumentFromAuth = async (
     const userSnapshot = await getDoc(userDocRef);
 
     if (!userSnapshot.exists()) {
-        const { displayName, email } = userAuth;
+        const {displayName, email} = userAuth;
         const createdAt = new Date();
 
         try {
