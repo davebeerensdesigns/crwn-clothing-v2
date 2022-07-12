@@ -15,7 +15,7 @@ const App = () => {
                        element={
                            <HomeComponent/>
                        }/>
-                <Route path='shop'
+                <Route path='shop/*'
                        element={
                            <ShopComponent/>
                        }/>
