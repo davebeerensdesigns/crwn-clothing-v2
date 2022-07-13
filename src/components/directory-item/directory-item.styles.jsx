@@ -11,6 +11,16 @@ export const Body = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+  h2{
+    font-weight: bold;
+    margin: 0 6px 0;
+    font-size: 22px;
+    color: #4a4a4a;
+  }
+  p{
+    font-weight: lighter;
+    font-size: 16px;
+  }
 `
 
 export const BackgroundImage = styled.div`
@@ -18,18 +28,7 @@ export const BackgroundImage = styled.div`
   height: 100%;
   background-size: cover;
   background-position: center;
-`
-
-export const Heading2 = styled.h2`
-  font-weight: bold;
-  margin: 0 6px 0;
-  font-size: 22px;
-  color: #4a4a4a;
-`
-
-export const Paragraph = styled.p`
-  font-weight: lighter;
-  font-size: 16px;
+  background-image: ${({imageUrl}) => `url(${imageUrl})`};
 `
 
 export const DirectoryItemContainer = styled.div`
@@ -54,10 +53,6 @@ export const DirectoryItemContainer = styled.div`
     & ${Body} {
       opacity: 0.9;
     }
-  }
-
-  &.large {
-    height: 380px;
   }
 
   &:first-child {
