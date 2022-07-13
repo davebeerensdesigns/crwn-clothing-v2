@@ -11,13 +11,16 @@ export const Body = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
-  h2{
+
+  h2 {
     font-weight: bold;
     margin: 0 6px 0;
     font-size: 22px;
     color: #4a4a4a;
+    text-transform: uppercase;
   }
-  p{
+
+  p {
     font-weight: lighter;
     font-size: 16px;
   }
