@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 
 import {store} from "./store/store";
 
-import {CartProvider} from "./contexts/cart.context";
-
 import App from './App';
 import './index.styles.scss';
 
