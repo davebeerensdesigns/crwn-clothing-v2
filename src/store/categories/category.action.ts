@@ -19,14 +19,19 @@ export type CategoryAction =
     | FetchCategoriesSuccess
     | FetchCategoriesFailed;
 
-export const fetchCategoriesStart = () => createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
+export const fetchCategoriesStart = (): FetchCategoriesStart =>
+    createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
 
-export const fetchCategoriesSuccess = (categoriesArray: Category[]): FetchCategoriesSuccess => createAction(
+export const fetchCategoriesSuccess = (
+    categoriesArray: Category[]
+): FetchCategoriesSuccess => createAction(
     CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
     categoriesArray
 );
 
-export const fetchCategoriesFailed = (error: Error): FetchCategoriesFailed => createAction(
+export const fetchCategoriesFailed = (
+    error: Error
+): FetchCategoriesFailed => createAction(
     CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED,
     error
 );
