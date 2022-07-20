@@ -8,7 +8,9 @@ import {
     signUpFailed,
     signOutSuccess,
     signOutFailed,
-    EmailSignInStart
+    EmailSignInStart,
+    SignUpStart,
+    SignUpSuccess
 } from "./user.action";
 
 import {
@@ -65,12 +67,15 @@ export function* isUserAuthenticated() {
     }
 }
 
-export function* signUp({payload: {displayName, email, password}}) {
+export function* signUp({payload: {displayName, email, password}}: SignUpStart) {
     try {
-        const {user} = yield* call(createAuthUserWithEmailAndPassword, email, password);
-        yield* put(signUpSuccess(user, {displayName}));
+        const userCredential = yield* call(createAuthUserWithEmailAndPassword, email, password);
+        if(userCredential) {
+            const { user } = userCredential;
+            yield* put(signUpSuccess(user, {displayName}));
+        }
     } catch (error) {
-        yield* put(signUpFailed(error));
+        yield* put(signUpFailed(error as Error));
     }
 }
 
@@ -79,12 +84,12 @@ export function* signOut() {
         yield* call(signOutUser);
         yield* put(signOutSuccess());
     } catch (error) {
-        yield* put(signOutFailed(error));
+        yield* put(signOutFailed(error as Error));
     }
 }
 
-export function* signInAfterSignUp({payload: {user, additionalData}}) {
-    yield* call(getSnapshotFromUserAuth, user, additionalData);
+export function* signInAfterSignUp({payload: {user, additionalDetails}}: SignUpSuccess) {
+    yield* call(getSnapshotFromUserAuth, user, additionalDetails);
 }
 
 export function* onGoogleSignInStart() {
