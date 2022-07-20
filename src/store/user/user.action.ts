@@ -42,7 +42,7 @@ export const emailSignInStart = withMatcher((email: string, password: string): E
     return createAction(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, {email, password})
 })
 
-export const signInSuccess = withMatcher((user: UserData): SignInSuccess => {
+export const signInSuccess = withMatcher((user: UserData & {id: string}): SignInSuccess => {
     return createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user)
 })
 
