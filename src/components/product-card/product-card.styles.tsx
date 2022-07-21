@@ -6,6 +6,9 @@ export const ProductCardContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  @media screen and (max-width: 768px) {
+    min-width: 40vw;
+  }
   
   button{
     width: 80%;
@@ -13,6 +16,13 @@ export const ProductCardContainer = styled.div`
     position: absolute;
     top: 255px;
     display: none;
+    padding: 0 20px;
+    @media screen and (max-width: 768px) {
+      display: block;
+      opacity: .9;
+      min-width: unset;
+      padding: 0 10px;
+    }
   }
   &:hover {
     img {
