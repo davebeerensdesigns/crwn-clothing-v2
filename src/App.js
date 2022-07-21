@@ -1,14 +1,16 @@
-import {useEffect} from "react";
+import {useEffect, lazy, Suspense} from "react";
 import {useDispatch} from "react-redux";
 import {Routes, Route} from "react-router-dom";
 
 import {checkUserSession} from "./store/user/user.action";
 
-import HomeComponent from "./routes/home/home.component";
-import NavigationComponent from "./routes/navigation/navigation.component";
-import AuthenticationComponent from "./routes/authentication/authentication.component";
-import ShopComponent from "./routes/shop/shop.component";
-import CheckoutComponent from "./routes/checkout/checkout.component";
+import SpinnerComponent from "./components/spinner/spinner.component";
+
+const HomeComponent = lazy(() => import("./routes/home/home.component"));
+const AuthenticationComponent = lazy(() => import("./routes/authentication/authentication.component"));
+const NavigationComponent = lazy(() => import("./routes/navigation/navigation.component"));
+const ShopComponent = lazy(() => import("./routes/shop/shop.component"));
+const CheckoutComponent = lazy(() => import("./routes/checkout/checkout.component"));
 
 const App = () => {
 
@@ -19,27 +21,29 @@ const App = () => {
     }, []);
 
     return (
-        <Routes>
-            <Route path='/'
-                   element={<NavigationComponent/>}>
-                <Route index path='/'
-                       element={
-                           <HomeComponent/>
-                       }/>
-                <Route path='shop/*'
-                       element={
-                           <ShopComponent/>
-                       }/>
-                <Route path='auth'
-                       element={
-                           <AuthenticationComponent/>
-                       }/>
-                <Route path='checkout'
-                       element={
-                           <CheckoutComponent/>
-                       }/>
-            </Route>
-        </Routes>
+        <Suspense fallback={<SpinnerComponent />}>
+            <Routes>
+                <Route path='/'
+                       element={<NavigationComponent/>}>
+                    <Route index path='/'
+                           element={
+                               <HomeComponent/>
+                           }/>
+                    <Route path='shop/*'
+                           element={
+                               <ShopComponent/>
+                           }/>
+                    <Route path='auth'
+                           element={
+                               <AuthenticationComponent/>
+                           }/>
+                    <Route path='checkout'
+                           element={
+                               <CheckoutComponent/>
+                           }/>
+                </Route>
+            </Routes>
+        </Suspense>
     )
 }
 
